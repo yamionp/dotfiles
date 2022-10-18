@@ -1,0 +1,6 @@
+[aws]
+symbol = "🅰 "
+force_display = true
+
+[erlang]
+format = "via [e $version](bold red) "
