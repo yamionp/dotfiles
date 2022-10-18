@@ -3,8 +3,8 @@
 DOTFILES_ON_HOME_DIR="$(cd "$(dirname "$0")/../home/" && pwd)"
 echo "make link ${DOTFILES_ON_HOME_DIR} to ${HOME}"
 for dotfile in "${DOTFILES_ON_HOME_DIR}"/.??* ; do
-    echo $dotfile
-    #ln -fnsv "${dotfile}" "${HOME}"
+    # echo $dotfile
+    ln -fnsv "${dotfile}" "${HOME}"
 done
 
 CONFIGFILES_ON_DOT_CONFIG_DIR="$(cd "$(dirname "$0")/../.config/" && pwd)"
