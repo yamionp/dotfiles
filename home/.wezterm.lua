@@ -1,5 +1,6 @@
 local wezterm = require 'wezterm'
 
+-- https://github.com/ymotongpoo/dotfiles/blob/develop/wezterm.lua
 function font_with_fallback(preferred, params)
   local names = preferred
   local fallbacks = { 'Hack Nerd Font Mono', 'Noto Sans JP', 'JetBrains Mono' }
@@ -61,33 +62,43 @@ return {
     -- basic config
     { key = 'c',          mods = 'SUPER',             action = wezterm.action.CopyTo 'Clipboard' },
     { key = 'v',          mods = 'SUPER',             action = wezterm.action.PasteFrom 'Clipboard' },
-    { key = 'n',          mods = 'SHIFT|CTRL',        action = wezterm.action.SpawnWindow },
+    
+    -- application
+    { key = 'q',          mods = 'SUPER',             action = wezterm.action.QuitApplication },
 
-    { key = 't',          mods = 'SUPER',             action = wezterm.action.SpawnTab 'CurrentPaneDomain' },
-    { key = 'w',          mods = 'SUPER',             action = wezterm.action.CloseCurrentTab {confirm=true} },
-    { key = '1',          mods = 'SUPER',             action = wezterm.action.ActivateTab(0) },
-    { key = '2',          mods = 'SUPER',             action = wezterm.action.ActivateTab(1) },
-    { key = '3',          mods = 'SUPER',             action = wezterm.action.ActivateTab(2) },
-    { key = '4',          mods = 'SUPER',             action = wezterm.action.ActivateTab(3) },
-    { key = '5',          mods = 'SUPER',             action = wezterm.action.ActivateTab(4) },
-    { key = 'LeftArrow',  mods = 'SUPER',             action = wezterm.action.ActivateTabRelative(-1) },
-    { key = 'RightArrow', mods = 'SUPER',             action = wezterm.action.ActivateTabRelative(1) },
-
-    { key = 'LeftArrow',  mods = 'OPT',               action = wezterm.action.SendKey { key = 'b', mods = 'ALT', }, },
-    { key = 'RightArrow', mods = 'OPT',               action = wezterm.action.SendKey { key = 'f', mods = 'ALT' }, },
-    { key = 'LeftArrow',  mods = 'SHIFT',             action = wezterm.action.SendKey { key = 'a', mods = 'CTRL', }, },
-    { key = 'RightArrow', mods = 'SHIFT',             action = wezterm.action.SendKey { key = 'e', mods = 'CTRL' }, },
-
-    { key = 'UpArrow',    mods = 'SHIFT|CTRL',        action = wezterm.action.ActivatePaneDirection "Up" },
-    { key = 'DownArrow',  mods = 'SHIFT|CTRL',        action = wezterm.action.ActivatePaneDirection "Down" },
-    { key = 'LeftArrow',  mods = 'SHIFT|CTRL',        action = wezterm.action.ActivatePaneDirection "Left" },
-    { key = 'RightArrow', mods = 'SHIFT|CTRL',        action = wezterm.action.ActivatePaneDirection "Right" },
+    -- window
+    { key = 'n',          mods = 'SUPER',             action = wezterm.action.SpawnWindow },
 
     { key = '-',          mods = 'SUPER|CTRL',        action = wezterm.action.DecreaseFontSize },
     { key = '=',          mods = 'SUPER|CTRL',        action = wezterm.action.IncreaseFontSize },
     { key = '0',          mods = 'SUPER|CTRL',        action = wezterm.action.ResetFontSize },
 
-    { key = 'UpArrow',    mods = 'SUPER|CTRL',        action = wezterm.action.ScrollToPrompt(-1) },
-    { key = 'DownArrow',  mods = 'SUPER|CTRL',        action = wezterm.action.ScrollToPrompt(1) }, 
+    -- tab
+    { key = 't',          mods = 'SUPER',             action = wezterm.action.SpawnTab 'CurrentPaneDomain' },
+    { key = 'w',          mods = 'SUPER',             action = wezterm.action.CloseCurrentTab {confirm=true} },
+
+    { key = '1',          mods = 'SUPER',             action = wezterm.action.ActivateTab(0) },
+    { key = '2',          mods = 'SUPER',             action = wezterm.action.ActivateTab(1) },
+    { key = '3',          mods = 'SUPER',             action = wezterm.action.ActivateTab(2) },
+    { key = '4',          mods = 'SUPER',             action = wezterm.action.ActivateTab(3) },
+    { key = '5',          mods = 'SUPER',             action = wezterm.action.ActivateTab(4) },
+
+    { key = 'LeftArrow',  mods = 'SUPER',             action = wezterm.action.ActivateTabRelative(-1) },
+    { key = 'RightArrow', mods = 'SUPER',             action = wezterm.action.ActivateTabRelative(1) },
+
+    -- pane
+    { key = 'UpArrow',    mods = 'SHIFT|CTRL',        action = wezterm.action.ActivatePaneDirection "Up" },
+    { key = 'DownArrow',  mods = 'SHIFT|CTRL',        action = wezterm.action.ActivatePaneDirection "Down" },
+    { key = 'LeftArrow',  mods = 'SHIFT|CTRL',        action = wezterm.action.ActivatePaneDirection "Left" },
+    { key = 'RightArrow', mods = 'SHIFT|CTRL',        action = wezterm.action.ActivatePaneDirection "Right" },
+
+    -- cursor move
+    { key = 'LeftArrow',  mods = 'OPT',               action = wezterm.action.SendKey { key = 'b', mods = 'ALT', }, },
+    { key = 'RightArrow', mods = 'OPT',               action = wezterm.action.SendKey { key = 'f', mods = 'ALT' }, },
+    { key = 'LeftArrow',  mods = 'OPT|SHIFT',         action = wezterm.action.SendKey { key = 'a', mods = 'CTRL', }, },
+    { key = 'RightArrow', mods = 'OPT|SHIFT',         action = wezterm.action.SendKey { key = 'e', mods = 'CTRL' }, },
+
+    -- clear scroll back
+    { key = 'k',          mods = 'SUPER',             action = wezterm.action.ClearScrollback 'ScrollbackAndViewport', },
   },
 }
