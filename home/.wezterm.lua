@@ -3,13 +3,18 @@ local wezterm = require 'wezterm'
 -- https://github.com/ymotongpoo/dotfiles/blob/develop/wezterm.lua
 function font_with_fallback(preferred, params)
   local names = preferred
-  local fallbacks = { 'Hack Nerd Font Mono', 'Noto Sans JP', 'JetBrains Mono' }
+  local fallbacks = { 'Hack Nerd Font Mono', 'JetBrains Mono', 'Noto Sans JP' }
   if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
     table.insert(fallbacks, 'Consolas')
     table.insert(fallbacks, 'Meiryo UI')
     table.insert(fallbacks, 'Yu Gothic UI')
   end
   if wezterm.target_triple == 'x86_64-apple-darwin' then
+    table.insert(fallbacks, 'Monaco')
+    table.insert(fallbacks, 'Menlo')
+    table.insert(fallbacks, 'ヒラギノ丸ゴ ProN')
+  end
+  if wezterm.target_triple == 'aarch64-apple-darwin' then
     table.insert(fallbacks, 'Monaco')
     table.insert(fallbacks, 'Menlo')
     table.insert(fallbacks, 'ヒラギノ丸ゴ ProN')
@@ -34,7 +39,7 @@ return {
   default_cursor_style = 'BlinkingBar',
   
   ----------------- fonts
-  font = font_with_fallback { 'JetBrainsMono Nerd Font Mono' },
+  font = font_with_fallback { 'MonaspiceKr Nerd Font' },
   font_size = 14.0,
   
   ----------------- window
